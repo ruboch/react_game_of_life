@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "../index.css";
 import Cell from "./Cell";
-import { deadState, randState } from "../logic/states";
+import { randState } from "../logic/states";
 
 function Board(props) {
-  const [currentBoard, setcurrentBoard] = useState(
-    randState(props.rows, props.columns)
-  );
+  const [currentBoard, setcurrentBoard] = useState(props.state);
+
+  useEffect(() => {
+    setcurrentBoard(props.state);
+  }, [props.state]);
 
   let outarr = [];
   for (let i = 0; i < props.rows; i++) {
